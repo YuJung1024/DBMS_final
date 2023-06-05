@@ -74,12 +74,19 @@ public class intergrate extends HttpServlet {
 				boolean success;
 				success =stat.execute(query1);
 				boolean exist;
+				String [][]re;
+				int index=0;
 				if(success) {
 					ResultSet result = stat.getResultSet();
 					ArrayList<String>c=showResultSet(result);
-					int i =1;
+					re = new String [c.size()][2];
+					int i =uid;
+					for(int j =0;j<c.size();j++) {
+						re[j][1]=c.get(j);
+					}
 					if(c.contains(Integer.toString(i))) {
 						exist = true;
+						index= c.indexOf(i);
 					}else {
 						exist=false;
 					}
@@ -87,18 +94,20 @@ public class intergrate extends HttpServlet {
 				}
 				boolean success2;
 				success2 =stat.execute(query2);
-				String p = "full-time";
+//				String p = "full-time";
 				boolean isfull;
 				if(exist=true) {
 					if(success2) {
 					ResultSet result = stat.getResultSet();
 					ArrayList<String>c=showResultSet(result);
-					if(c.contains(p)) {
+					if(c.get(index).equals("full-time")) {
 						isfull = true;
 						System.out.println("full-time");
+						place = "f";
 					}else {
 						isfull=false;
 						System.out.println("part-time");
+						place = "p";
 					}
 					result.close();
 					}
@@ -142,22 +151,41 @@ public class intergrate extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
-		if(request.getParameter("userid")== null) {
-			//String requestUri = request.getRequestURI();
-			//request.setAttribute("requestUri", requestUri);
-			request.getRequestDispatcher("login.jsp").forward(request, response);
-			return;
+		if(request.getParameter("userid")!= null) {
+			String id = request.getParameter("userid");
+			uid = Integer.parseInt(id);
+			try {
+				if(check(uid).equalsIgnoreCase("p")) {
+					request.getRequestDispatcher("userpage.jsp").forward(request, response);
+					return;
+					}
+				else if(check(uid).equalsIgnoreCase("f"))  {
+					request.getRequestDispatcher("manager.jsp").forward(request, response);
+					return;
+				}
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		try {
-			check(uid);
-		} catch (ServletException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+//		try {
+//			check(uid);
+//		} 
+//		catch (ServletException | SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		String id = request.getParameter("userid");
-		uid = Integer.parseInt(id);
+		
+		//((ServletContext) response).getRequestDispatcher("userpage.html").forward(request, response);
 		request.getRequestDispatcher("login.jsp").forward(request, response);
 		
 	}

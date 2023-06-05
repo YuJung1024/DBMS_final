@@ -30,7 +30,7 @@
 <script>
 	document.getElementById("start").addEventListener("click",redirectFunction);
 	function redirectFunction(){
-		window.location.href ="userpage.jsp"
+		window.location.href ="decoration.jsp"
 	}
 </script>
 

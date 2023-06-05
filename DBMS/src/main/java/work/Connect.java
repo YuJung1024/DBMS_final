@@ -8,14 +8,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.servlet.ServletException;
+
 public class Connect {
-	public static void main(String[] args) {
+	//public static void main(String[] args) {
+	Connection connect;
+	Statement stat ;
+	public Connect() {
 		String server = "jdbc:mysql://my-database-1.ck5d9adueifx.ap-southeast-2.rds.amazonaws.com/";
 		String database = "part-time training system";
 		String url = server + database;
 		String username = "admin";
 		String password = "LN6MVu8Jr38vmyylUBD0";
-		Connection connect;
+		//Connection connect;
 		
     
         try {
@@ -31,17 +36,25 @@ public class Connect {
 				boolean success;
 				success =stat.execute(query1);
 				boolean exist;
+				String [][] re;
+				int index = 0;
 				if(success) {
 					ResultSet result = stat.getResultSet();
 					ArrayList<String>c=showResultSet(result);
+					re = new String [c.size()][2];
 					int i =1;
+					for(int j =0;j<c.size();j++) {
+						re[j][1]=c.get(j);
+					}
 					if(c.contains(Integer.toString(i))) {
 						exist = true;
+						index= c.indexOf(i);
 					}else {
 						exist=false;
 					}
 					result.close();
 				}
+				
 				boolean success2;
 				success2 =stat.execute(query2);
 				String p = "full-time";
@@ -50,12 +63,14 @@ public class Connect {
 					if(success2) {
 					ResultSet result = stat.getResultSet();
 					ArrayList<String>c=showResultSet(result);
-					if(c.contains(p)) {
+					if(c.get(index).equals("full-time")) {
 						isfull = true;
 						System.out.println("full-time");
+//						place = "f";
 					}else {
 						isfull=false;
 						System.out.println("part-time");
+//						place = "p";
 					}
 					result.close();
 					}
@@ -66,6 +81,60 @@ public class Connect {
         
         }
 	}
+	public String check(int uid) throws ServletException, SQLException {
+		   String place="a";
+		   if(connect!=null) {
+			   System.out.println("Connected to the database!");
+			   stat=connect.createStatement();
+			   String query1,query2;
+				query1 = "SELECT user_id FROM user;";
+				query2 = "SELECT grade FROM user;";
+				boolean success;
+				success =stat.execute(query1);
+				boolean exist;
+				String [][]re;
+				int index=0;
+				if(success) {
+					ResultSet result = stat.getResultSet();
+					ArrayList<String>c=showResultSet(result);
+					re = new String [c.size()][2];
+					int i =uid;
+					for(int j =0;j<c.size();j++) {
+						re[j][1]=c.get(j);
+					}
+					if(c.contains(Integer.toString(i))) {
+						exist = true;
+						index= c.indexOf(i);
+					}else {
+						exist=false;
+					}
+					result.close();
+				}
+				boolean success2;
+				success2 =stat.execute(query2);
+//				String p = "full-time";
+				boolean isfull;
+				if(exist=true) {
+					if(success2) {
+					ResultSet result = stat.getResultSet();
+					ArrayList<String>c=showResultSet(result);
+					if(c.get(index).equals("full-time")) {
+						isfull = true;
+						System.out.println("full-time");
+						place = "f";
+					}else {
+						isfull=false;
+						System.out.println("part-time");
+						place = "p";
+					}
+					result.close();
+					}
+				}
+		   } 
+		return place;
+		   
+	   }
+	
 	
 	private static ArrayList showResultSet(ResultSet result)throws SQLException {
 		// TODO Auto-generated method stub
