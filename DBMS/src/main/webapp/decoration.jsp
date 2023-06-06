@@ -23,7 +23,7 @@ body{
 }
 
 .button1 {
-background-image:url("Fridge_Cartoons_n.jpg");
+background-image:url("Fridge_Cartoons.jpg");
  background-size:100px 400px ;
    color: black; 
   width:100px;
@@ -43,7 +43,7 @@ background-size: 80px 50px;
 }
 
 .button3 {
-background-image:url("Racks_Cartoon_n.jpg");
+background-image:url("Racks_Cartoon.jpg");
  background-size:780px 330px; 
   color: black; 
   width:780px;
@@ -53,7 +53,7 @@ background-image:url("Racks_Cartoon_n.jpg");
 }
 
 .button4 {
-  background-image:url("seats_cartoons_n.jpg");
+  background-image:url("seats_cartoons.jpg");
  background-size:600px 60px;
   color: black; 
   width:600px;
@@ -74,7 +74,8 @@ background-image:url("pos_cartoon_n.jpg");
 
 .button6 {
 background-image:url("drinks_cartoon_n.jpg");
- background-size:550px 70px;
+ background-size:100px 70px;
+ repeat-x;
   color: black; 
   width:550px;
   height: 70px;
@@ -121,7 +122,7 @@ background-image:url("drinks_cartoon_n.jpg");
 	<button class="button button1" onclick="showDialog()">Fridge</button>
 	<dialog id ="this-dialog">
 	<p>This is the image of the fridges</p>
-	<img src="Fridge_n.jpeg" width=100px height=100px>
+	<img src="Fridge.jpeg" width=100px height=100px>
 	<br>
 	Product info:
 	<br> Drinks
@@ -138,11 +139,16 @@ background-image:url("drinks_cartoon_n.jpg");
 	<button class="button button2" onclick="showDialog2()">Cigarette</button>
 	<dialog id ="this-dialog2">
 	<p>this is the information for the product</p>
-	<img src="cigar_n.jpg" width=100px height=100px>
+	<img src="cigar.jpg" width=100px height=100px>
 	<br>
-	<a href="newCigarrette.html">
-	<button >info</button>
-	</a>
+	<!--  <a href="newCigarrette.html">-->
+	<button onclick="changepage2()">info</button>
+	<script>
+	function changepage2(){
+		window.location.href ="practice_mode.jsp"
+	}
+</script>
+	<!--  </a>-->
 	<button onclick="hidethisdialog2()">close</button>
 	</dialog>
 <!-- </a> -->
@@ -152,7 +158,7 @@ background-image:url("drinks_cartoon_n.jpg");
 	<button class="button button3" onclick="showDialog3()">Racks</button>
 	<dialog id ="this-dialog3">
 	<p>this is the information for the product</p>
-	<img src="racks_n.jpg" width=100px height=100px>
+	<img src="racks.jpg" width=100px height=100px>
 	<br>
 	<button onclick="hidethisdialog3()">close</button>
 	</dialog>
@@ -162,7 +168,7 @@ background-image:url("drinks_cartoon_n.jpg");
 	<button class="button button4" onclick="showDialog4()">Seats</button>
 	<dialog id ="this-dialog4">
 	<p>this is the information for the product</p>
-	<img src="seats_n.jpg" width=100px height=100px>
+	<img src="seats.jpg" width=100px height=100px>
 	<br>
 	<button onclick="hidethisdialog4()">close</button>
 	</dialog>
@@ -182,7 +188,7 @@ background-image:url("drinks_cartoon_n.jpg");
 	<button class="button button6" onclick="showDialog6()">Drinks</button>
 	<dialog id ="this-dialog6">
 	<p>this is the information for the product</p>
-	<img src="drinks_n.jpg" width=100px height=100px>
+	<img src="drinks.jpg" width=100px height=100px>
 	<br>
 	<button onclick="hidethisdialog6()">close</button>
 	</dialog>
@@ -199,7 +205,12 @@ background-image:url("drinks_cartoon_n.jpg");
 <!-- </a> -->
 
 <!-- <a href="Door.html"> -->
-	<button class="button button8">Door</button>
+	<button class="button button8" onclick="changepage()">Door</button>
+		<script>
+		function changepage(){
+			window.location.href ="manager.jsp"
+		}
+	</script>
 	
 <!-- </a> -->
 
