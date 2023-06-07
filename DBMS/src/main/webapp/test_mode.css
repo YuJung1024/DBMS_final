@@ -137,19 +137,5 @@
 		padding-top: 3000px;
 		padding-bottom: 3px;
 }
-.button {
-    text-align: center;
-    display: inline-block;
-    /* font-size: xx-small; */
-  /*  margin: 4px 2px;*/
-    transition-duration: 0.4s;
-    cursor: pointer;
-        position:absolute; 
-        left: 1015px;
-        top: 1000px;
-        width: 120px;
-        height: 100px;
 
-  }
-  
   
