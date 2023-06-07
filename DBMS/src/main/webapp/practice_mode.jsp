@@ -139,17 +139,38 @@ img{
 }
 .container{
   position:absolute;
-	margin-top: 45%;
-    padding-left: 35%;
-	font-size:25px;
+		margin-top: 40%;
+    padding-left: 30%;
+		/*left:600px;*/
+		font-size:25px;
 		
 }
-.fixed{
-	position:relative;
-
-}
-.container1{
+.table1{
   position: relative;
+  /*margin-left: auto;*/
+  padding-left: 5ch;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.table2{
+  padding-top: 65ch;
+  padding-left: 55ch;
+  position: relative;
+  /*margin-left: auto;*/
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-top: 2ch;
+}
+.home{
+  position: relative;
+  margin-left: 40%;
+  margin-right: 40%;
+  font-size: 25px;
+  margin-top: 45%;
+  display: inline-block;
+  transition-duration: 0.4s;
 }
 
 
@@ -158,8 +179,8 @@ img{
 <script src="dialog-polyfill.js"></script>
 </head>
 <body>
-<div class="container1">
-<table class="fixed">
+<section>
+<table class="table1">
 <tbody>	
 <tr>
 <td>
@@ -484,22 +505,25 @@ img{
     </td></tr>
 	</tbody>
 	</table>
-	<div class="container">
-    <button style="width:150px;height:40px" onclick="changepage()">back</button>
+	</section>
+	<table class="table2">
+	<tr>
+	<td>
+    <button class="home" style="width:150px;height:40px" onclick="changepage()">back</button>
     <script>
 		function changepage(){
 			window.location.href ="decoration.jsp"
 		}
 	</script>
-     <button style="width:150px;height:40px" onclick="changepage1()">test_mode</button>
+	</td>
+	<td>
+     <button class="home" style="width:150px;height:40px" onclick="changepage1()">test_mode</button>
     <script>
 		function changepage1(){
 			window.location.href ="test_mode.jsp"
 		}
 	</script>
-   
-</div>
-</div>
+   </td></tr></table>
 
 </body>
 </html>
