@@ -50,3 +50,4 @@ function showDialog6(){
 function hidethisdialog6(){
 	document.getElementById('this-dialog6').close();
 }
+

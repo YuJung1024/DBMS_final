@@ -122,7 +122,7 @@ background-image:url("drinks_cartoon_n.jpg");
 	<button class="button button1" onclick="showDialog()">Fridge</button>
 	<dialog id ="this-dialog">
 	<p>This is the image of the fridges</p>
-	<img src="Fridge.jpeg" width=100px height=100px>
+	<img src="Fridges.jpeg" width=100px height=100px>
 	<br>
 	Product info:
 	<br> Drinks
