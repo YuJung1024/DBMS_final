@@ -40,103 +40,133 @@ public class intergrate extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-	public Connection conection;
+	static Connection conn;
 	public Statement stat;
-	public Connect connect= new Connect();
+//	public Connect connect= new Connect();
 	
-//	   public void init() throws ServletException {
-//	        // MySQL database credentials
+	   public void init() throws ServletException {
+	        // MySQL database credentials
 //	        String server = "jdbc:mysql://my-database-1.ck5d9adueifx.ap-southeast-2.rds.amazonaws.com/";
 //	        String database = "part-time training system";
 //	        String url = server + database;
 //	        String username = "admin";
 //	        String password = "LN6MVu8Jr38vmyylUBD0";
-//	        Connection connect=null;
-//
-//	        try {
-//	            // Create a connection object
-//	            connect= DriverManager.getConnection(url, username, password);
-//	            System.out.println("Connected to the database!");
+		   
+		   
+
+	        try {
+	        	String connectionURL = "jdbc:mysql://my-database-1.ck5d9adueifx.ap-southeast-2.rds.amazonaws.com/part-time training system"; 
+	 	       Connection connection=null;
+	 	       
+	 	       Class.forName("com.mysql.jdbc.Driver").newInstance(); 
+	            // Create a connection object
+	 	      connection = DriverManager.getConnection(connectionURL, "admin", "LN6MVu8Jr38vmyylUBD0");
+	 	      if(!connection.isClosed()) {
+	 	    	 System.out.println("Connected to the database!");
+//	 	    	 connection.close();
+	 	    	 conn=connection;
+	 	    	 stat=conn.createStatement();
+	 	    	 
+	 	    	 String query;
+	 	    	 query ="SELECT * FROM user;";
+	 	    	 boolean success;
+	 	    	 success  = stat.execute(query);
+	 	    	 if(success) {
+	 	    		 ResultSet result = stat.getResultSet();
+	 	    		 showResultSet(result);
+	 	    		 result.close();
+	 	    	 }
+	 	      }
+	 	     
 //	            conection =  connect;
-//	        } catch (SQLException e) {
-//	            // Handle the connection error
-//	            System.out.println("Connection failed! Error: " + e.getMessage());
-//	        } 
-//	    }
-//	   public String check(int uid) throws ServletException, SQLException {
-//		   String place="a";
-//		   init();
-//		   if(conection!=null) {
-//			   System.out.println("Connected to the database!");
-//			   stat=conection.createStatement();
-//			   String query1,query2;
-//				query1 = "SELECT user_id FROM user;";
-//				query2 = "SELECT grade FROM user;";
-//				boolean success;
-//				success =stat.execute(query1);
-//				boolean exist;
-//				String [][]re;
-//				int index=0;
-//				if(success) {
-//					ResultSet result = stat.getResultSet();
-//					ArrayList<String>c=showResultSet(result);
-//					re = new String [c.size()][2];
-//					int i =uid;
-//					for(int j =0;j<c.size();j++) {
-//						re[j][1]=c.get(j);
-//					}
-//					if(c.contains(Integer.toString(i))) {
-//						exist = true;
-//						index= c.indexOf(i);
-//					}else {
-//						exist=false;
-//					}
-//					result.close();
-//				}
-//				boolean success2;
-//				success2 =stat.execute(query2);
-////				String p = "full-time";
-//				boolean isfull;
-//				if(exist=true) {
-//					if(success2) {
-//					ResultSet result = stat.getResultSet();
-//					ArrayList<String>c=showResultSet(result);
-//					if(c.get(index).equals("full-time")) {
-//						isfull = true;
-//						System.out.println("full-time");
-//						place = "f";
-//					}else {
-//						isfull=false;
-//						System.out.println("part-time");
-//						place = "p";
-//					}
-//					result.close();
-//					}
-//				}
-//		   } 
-//		return place;
-//		   
-//	   }
+	        } catch (SQLException e) {
+	            // Handle the connection error
+	            System.out.println("Connection failed! Error: " + e.getMessage());
+	        } catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+	    }
+	   public String check(int uid) throws ServletException, SQLException {
+		   String place="a";
+		   init();
+		   if(conn!=null) {
+			   System.out.println("Connected to the database!");
+			   stat=conn.createStatement();
+			   String query1,query2;
+				query1 = "SELECT user_id FROM user;";
+				query2 = "SELECT grade FROM user;";
+				boolean success;
+				success =stat.execute(query1);
+				boolean exist;
+				String [][]re;
+				int index=0;
+				if(success) {
+					ResultSet result = stat.getResultSet();
+					ArrayList<String>c=showResultSet(result);
+					re = new String [c.size()][2];
+					int i =uid;
+					for(int j =0;j<c.size();j++) {
+						re[j][1]=c.get(j);
+					}
+					if(c.contains(Integer.toString(i))) {
+						exist = true;
+						index= c.indexOf(i);
+					}else {
+						exist=false;
+					}
+					result.close();
+				}
+				boolean success2;
+				success2 =stat.execute(query2);
+//				String p = "full-time";
+				boolean isfull;
+				if(exist=true) {
+					if(success2) {
+					ResultSet result = stat.getResultSet();
+					ArrayList<String>c=showResultSet(result);
+					if(c.get(index).equals("full-time")) {
+						isfull = true;
+						System.out.println("full-time");
+						place = "f";
+					}else {
+						isfull=false;
+						System.out.println("part-time");
+						place = "p";
+					}
+					result.close();
+					}
+				}
+		   } 
+		return place;
+		   
+	   }
 	
-//	   private static ArrayList showResultSet(ResultSet result)throws SQLException {
-//			// TODO Auto-generated method stub
-//			ArrayList<String> cid =new ArrayList<String>();
-//			ResultSetMetaData metadata = result.getMetaData();
-//			int columnCount = metadata.getColumnCount();
-//			for(int i = 1;i<=columnCount;i++) {
-//				System.out.printf("%15s",metadata.getColumnLabel(i));
-//			}
-//			System.out.println();
-//			
-//			while(result.next()) {
-//				for(int j = 1;j<=columnCount;j++) {
-//					cid.add(result.getString(j));
-//					System.out.printf("%15s",result.getString(j));
-//				}
-//				System.out.println();
-//			}
-//			return cid;
-//		}
+	   private static ArrayList showResultSet(ResultSet result)throws SQLException {
+			// TODO Auto-generated method stub
+			ArrayList<String> cid =new ArrayList<String>();
+			ResultSetMetaData metadata = result.getMetaData();
+			int columnCount = metadata.getColumnCount();
+			for(int i = 1;i<=columnCount;i++) {
+				System.out.printf("%15s",metadata.getColumnLabel(i));
+			}
+			System.out.println();
+			
+			while(result.next()) {
+				for(int j = 1;j<=columnCount;j++) {
+					cid.add(result.getString(j));
+					System.out.printf("%15s",result.getString(j));
+				}
+				System.out.println();
+			}
+			return cid;
+		}
 	
     public intergrate() throws IOException,SQLException{
         super();
@@ -149,6 +179,7 @@ public class intergrate extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		Connect c=getC();
+		init();
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
@@ -156,34 +187,36 @@ public class intergrate extends HttpServlet {
 			String id = request.getParameter("userid");
 			uid = Integer.parseInt(id);
 			try {
-				if(connect.check(uid).equalsIgnoreCase("p")) {
-					request.getRequestDispatcher("userpage.jsp").forward(request, response);
-					return;
-					}
-				else if(connect.check(uid).equalsIgnoreCase("f"))  {
-					request.getRequestDispatcher("manager.jsp").forward(request, response);
-					return;
-				}
-			} catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
+				String status;
+				status=check(uid);
+			} 
+			catch (ServletException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+//			try {
+//				if(connect.check(uid).equalsIgnoreCase("p")) {
+//					request.getRequestDispatcher("userpage.jsp").forward(request, response);
+//					return;
+//					}
+//				else if(connect.check(uid).equalsIgnoreCase("f"))  {
+//					request.getRequestDispatcher("manager.jsp").forward(request, response);
+//					return;
+//				}
+//			} catch (ServletException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 		}
 		
-//		try {
-//			check(uid);
-//		} 
-//		catch (ServletException | SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		
 		//((ServletContext) response).getRequestDispatcher("userpage.html").forward(request, response);
@@ -197,6 +230,7 @@ public class intergrate extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
 	}
 	
 //	public static boolean isContainChinese(String str) {
