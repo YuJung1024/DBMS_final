@@ -32,6 +32,7 @@ if(!connection.isClosed())
 %>
 <font size="+3" color="green"></b>
 <% 
+System.out.print("success");
 out.println("Successfully connected to " + "MySQL server using TCP/IP...");
 connection.close();
 }

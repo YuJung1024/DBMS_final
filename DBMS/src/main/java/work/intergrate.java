@@ -40,32 +40,23 @@ public class intergrate extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-	static Connection conn;
+	public Connection conn;
 	public Statement stat;
+	public String userid;
 //	public Connect connect= new Connect();
 	
 	   public void init() throws ServletException {
-	        // MySQL database credentials
-//	        String server = "jdbc:mysql://my-database-1.ck5d9adueifx.ap-southeast-2.rds.amazonaws.com/";
-//	        String database = "part-time training system";
-//	        String url = server + database;
-//	        String username = "admin";
-//	        String password = "LN6MVu8Jr38vmyylUBD0";
-		   
-		   
-
 	        try {
 	        	String connectionURL = "jdbc:mysql://my-database-1.ck5d9adueifx.ap-southeast-2.rds.amazonaws.com/part-time training system"; 
-	 	       Connection connection=null;
+	        	Connection connection=null;
 	 	       
-	 	       Class.forName("com.mysql.jdbc.Driver").newInstance(); 
+	        	Class.forName("com.mysql.jdbc.Driver").newInstance(); 
 	            // Create a connection object
-	 	      connection = DriverManager.getConnection(connectionURL, "admin", "LN6MVu8Jr38vmyylUBD0");
-	 	      if(!connection.isClosed()) {
-	 	    	 System.out.println("Connected to the database!");
-//	 	    	 connection.close();
-	 	    	 conn=connection;
-	 	    	 stat=conn.createStatement();
+	        	connection = DriverManager.getConnection(connectionURL, "admin", "LN6MVu8Jr38vmyylUBD0");
+	        	if(!connection.isClosed()) {
+	        		System.out.println("Connected to the database!");
+	        		conn=connection;
+	        		stat=conn.createStatement();
 	 	    	 
 	 	    	 String query;
 	 	    	 query ="SELECT * FROM user;";
@@ -77,8 +68,6 @@ public class intergrate extends HttpServlet {
 	 	    		 result.close();
 	 	    	 }
 	 	      }
-	 	     
-//	            conection =  connect;
 	        } catch (SQLException e) {
 	            // Handle the connection error
 	            System.out.println("Connection failed! Error: " + e.getMessage());
@@ -95,9 +84,7 @@ public class intergrate extends HttpServlet {
 	    }
 	   public String check(int uid) throws ServletException, SQLException {
 		   String place="a";
-		   init();
 		   if(conn!=null) {
-			   System.out.println("Connected to the database!");
 			   stat=conn.createStatement();
 			   String query1,query2;
 				query1 = "SELECT user_id FROM user;";
@@ -148,6 +135,67 @@ public class intergrate extends HttpServlet {
 		   
 	   }
 	
+
+	   public void getinput(String input) {
+		   userid=input;
+		   System.out.println(userid);
+	   }
+	
+    public intergrate() throws IOException,SQLException{
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		System.out.print("get parameter");
+		response.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html");
+		if(request.getParameter("userid")== null) {
+			userid = request.getParameter("uid");
+			request.setAttribute("id", userid);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+			System.out.print(userid);
+			return;
+			
+			
+		}
+			int uid;
+			userid = request.getParameter("uid");
+			uid = Integer.parseInt(userid);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+			System.out.println("userid1"+userid);
+			try {
+				String status;
+				status=check(uid);
+				System.out.println("userid2"+userid);
+				if(status.equalsIgnoreCase("p")) {
+					request.getRequestDispatcher("userpage.jsp").forward(request, response);
+					return;
+					}
+				else if(status.equalsIgnoreCase("f"))  {
+					request.getRequestDispatcher("manager.jsp").forward(request, response);
+					return;
+				}
+			} catch (ServletException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		// TODO Auto-generated method stub
+		doGet(request, response);
+		
+	}
+	
 	   private static ArrayList showResultSet(ResultSet result)throws SQLException {
 			// TODO Auto-generated method stub
 			ArrayList<String> cid =new ArrayList<String>();
@@ -167,80 +215,4 @@ public class intergrate extends HttpServlet {
 			}
 			return cid;
 		}
-	
-    public intergrate() throws IOException,SQLException{
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		Connect c=getC();
-		init();
-		response.setCharacterEncoding("UTF-8");
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html");
-		if(request.getParameter("userid")!= null) {
-			String id = request.getParameter("userid");
-			uid = Integer.parseInt(id);
-			try {
-				String status;
-				status=check(uid);
-			} 
-			catch (ServletException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-//			try {
-//				if(connect.check(uid).equalsIgnoreCase("p")) {
-//					request.getRequestDispatcher("userpage.jsp").forward(request, response);
-//					return;
-//					}
-//				else if(connect.check(uid).equalsIgnoreCase("f"))  {
-//					request.getRequestDispatcher("manager.jsp").forward(request, response);
-//					return;
-//				}
-//			} catch (ServletException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-		}
-		
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		
-		//((ServletContext) response).getRequestDispatcher("userpage.html").forward(request, response);
-		request.getRequestDispatcher("login.jsp").forward(request, response);
-		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		// TODO Auto-generated method stub
-		doGet(request, response);
-		
-	}
-	
-//	public static boolean isContainChinese(String str) {
-//		Pattern p=Pattern.compile("[\u4e00-\u9fa5]");
-//		Matcher m=p.matcher(str);
-//		if(m.matches()) {
-//			return true;
-//		}
-//		return false;
-//	}
-
-
 }
