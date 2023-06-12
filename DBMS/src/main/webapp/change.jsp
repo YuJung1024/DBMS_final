@@ -23,7 +23,7 @@
 	<center>Click the picture and start!</center>
 	<br>
 	<div class="startbutton">
-	<button type="submit" id="start"><img src="store1.jpg" alt ="start"></button>
+	<button type="submit" id="start"><img src="pic/store1.jpg" alt ="start"></button>
 	</div>
 </body>
 

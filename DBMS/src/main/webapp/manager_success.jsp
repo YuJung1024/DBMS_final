@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="manager_success.css">
 </head>
 <body>
-    <img src="manager_check.png" alt="check" class="check">
+    <img src="pic/manager_check.png" alt="check" class="check">
     <h1>您的動作已成功執行</h1>
     <h2>請選擇下一個動作</h2>
     <button class = "button_add" onclick="window.location.href='manager_book.jsp'">建立班表</button>

@@ -147,19 +147,19 @@ img{
 }
 .table1{
   position: relative;
-  /*margin-left: auto;*/
   padding-left: 5ch;
   margin-right: auto;
   margin-top: auto;
   margin-bottom: auto;
+  padding-right:auto;
 }
 .table2{
   padding-top: 65ch;
   padding-left: 55ch;
-  position: relative;
+  position: absolute;
   /*margin-left: auto;*/
   margin-right: auto;
-  margin-top: auto;
+ margin-top: auto;
   margin-bottom: auto;
   margin-top: 2ch;
 }
@@ -173,49 +173,64 @@ img{
   transition-duration: 0.4s;
 }
 
-
 </style>
 
 <script src="dialog-polyfill.js"></script>
 </head>
 <body>
+<table class="table2">
+	<tbody>
+	<tr>
+	<td>
+    <button class="home" style="width:150px;height:40px" onclick="changepage()">back</button>
+    <script>
+		function changepage(){
+			window.location.href ="decoration.jsp"
+		}
+	</script>
+	</td>
+	<td>
+     <button class="home" style="width:150px;height:40px" onclick="changepage1()">test_mode</button>
+    <script>
+		function changepage1(){
+			window.location.href ="test_mode.jsp"
+		}
+	</script>
+   </td></tr></tbody></table>
+   
 <section>
 <table class="table1">
 <tbody>	
 <tr>
 <td>
-<button class="button button1" onclick="showDialog()"></button>
+<button id="button1" class="button button1" onclick="showDialog()"></button>
 	<dialog id ="this-dialog">
-	<p></p>
 	<img src="img/1.png">
 	<br>
 	Product info:
-  <br><span>名稱：雲絲頓藍 20支<br>
+  <br>名稱：雲絲頓藍 20支<br>
     別名：藍色雲絲(斯)頓 <br>
     價格：95元<br>
     品牌地：日本<br>
-    </span>
-	
 	<br>
 	<button onclick="hidethisdialog()">close</button>
 	</dialog>
 	</td>
+	
 	<td>
     <button class="button button2" onclick="showDialog2()"></button>
     <dialog id ="this-dialog2">
     <p></p>
     <img src="img/2.png">
     <br>
-    Product info:
-    <br><span>名稱：日本肯特長支6號<br>
-      別名：肯特6號<br>
-      價格：95元<br>
+    Product info:<br>
+    名稱：日本肯特長支6號<br>
+    別名：肯特6號<br>
+    價格：95元<br>
       品牌地：日本、韓國<br>
-      </span>
     <br>
     <button onclick="hidethisdialog2()">close</button>
     </dialog>
-    
     <button class="button button3" onclick="showDialog3()"></button>
     <dialog id ="this-dialog3">
     <p></p>
@@ -506,24 +521,9 @@ img{
 	</tbody>
 	</table>
 	</section>
-	<table class="table2">
-	<tr>
-	<td>
-    <button class="home" style="width:150px;height:40px" onclick="changepage()">back</button>
-    <script>
-		function changepage(){
-			window.location.href ="decoration.jsp"
-		}
-	</script>
-	</td>
-	<td>
-     <button class="home" style="width:150px;height:40px" onclick="changepage1()">test_mode</button>
-    <script>
-		function changepage1(){
-			window.location.href ="test_mode.jsp"
-		}
-	</script>
-   </td></tr></table>
+	<br><br><br>
+	
+	
 
 </body>
 </html>

@@ -23,7 +23,7 @@ body{
 }
 
 .button1 {
-background-image:url("Fridge_Cartoons.jpg");
+background-image:url("pic/Fridge_Cartoons.jpg");
  background-size:100px 400px ;
    color: black; 
   width:100px;
@@ -33,7 +33,7 @@ background-image:url("Fridge_Cartoons.jpg");
 }
 
 .button2 {
-background-image:url("cigar_cartoon_n.jpg");
+background-image:url("pic/cigar_cartoon_n.jpg");
 background-size: 80px 50px;
   color: black; 
   width:80px;
@@ -43,7 +43,7 @@ background-size: 80px 50px;
 }
 
 .button3 {
-background-image:url("Racks_Cartoon.jpg");
+background-image:url("pic/Racks_Cartoon.jpg");
  background-size:780px 330px; 
   color: black; 
   width:780px;
@@ -53,7 +53,7 @@ background-image:url("Racks_Cartoon.jpg");
 }
 
 .button4 {
-  background-image:url("seats_cartoons.jpg");
+  background-image:url("pic/seats_cartoons.jpg");
  background-size:600px 60px;
   color: black; 
   width:600px;
@@ -63,7 +63,7 @@ background-image:url("Racks_Cartoon.jpg");
 }
 
 .button5 {
-background-image:url("pos_cartoon_n.jpg");
+background-image:url("pic/pos_cartoon_n.jpg");
  background-size:80px 60px;
   color: black; 
   width:80px;
@@ -73,7 +73,7 @@ background-image:url("pos_cartoon_n.jpg");
 }
 
 .button6 {
-background-image:url("drinks_cartoon_n.jpg");
+background-image:url("pic/drinks_cartoon_n.jpg");
  background-size:100px 70px;
  repeat-x;
   color: black; 
@@ -122,7 +122,7 @@ background-image:url("drinks_cartoon_n.jpg");
 	<button class="button button1" onclick="showDialog()">Fridge</button>
 	<dialog id ="this-dialog">
 	<p>This is the image of the fridges</p>
-	<img src="Fridges.jpeg" width=100px height=100px>
+	<img src="pic/Fridges.jpeg" width=100px height=100px>
 	<br>
 	Product info:
 	<br> Drinks
@@ -139,7 +139,7 @@ background-image:url("drinks_cartoon_n.jpg");
 	<button class="button button2" onclick="showDialog2()">Cigarette</button>
 	<dialog id ="this-dialog2">
 	<p>this is the information for the product</p>
-	<img src="cigar.jpg" width=100px height=100px>
+	<img src="pic/cigar.jpg" width=100px height=100px>
 	<br>
 	<!--  <a href="newCigarrette.html">-->
 	<button onclick="changepage2()">info</button>
@@ -158,7 +158,7 @@ background-image:url("drinks_cartoon_n.jpg");
 	<button class="button button3" onclick="showDialog3()">Racks</button>
 	<dialog id ="this-dialog3">
 	<p>this is the information for the product</p>
-	<img src="racks.jpg" width=100px height=100px>
+	<img src="pic/racks.jpg" width=100px height=100px>
 	<br>
 	<button onclick="hidethisdialog3()">close</button>
 	</dialog>
@@ -168,7 +168,7 @@ background-image:url("drinks_cartoon_n.jpg");
 	<button class="button button4" onclick="showDialog4()">Seats</button>
 	<dialog id ="this-dialog4">
 	<p>this is the information for the product</p>
-	<img src="seats.jpg" width=100px height=100px>
+	<img src="pic/seats.jpg" width=100px height=100px>
 	<br>
 	<button onclick="hidethisdialog4()">close</button>
 	</dialog>
@@ -178,7 +178,7 @@ background-image:url("drinks_cartoon_n.jpg");
 	<button class="button button5" onclick="showDialog5()">POS</button>
 	<dialog id ="this-dialog5">
 	<p>this is the information for the product</p>
-	<img src="POS_n.jpg" width=100px height=100px>
+	<img src="pic/POS_n.jpg" width=100px height=100px>
 	<br>
 	<button onclick="hidethisdialog5()">close</button>
 	</dialog>
@@ -188,7 +188,7 @@ background-image:url("drinks_cartoon_n.jpg");
 	<button class="button button6" onclick="showDialog6()">Drinks</button>
 	<dialog id ="this-dialog6">
 	<p>this is the information for the product</p>
-	<img src="drinks.jpg" width=100px height=100px>
+	<img src="pic/drinks.jpg" width=100px height=100px>
 	<br>
 	<button onclick="hidethisdialog6()">close</button>
 	</dialog>
