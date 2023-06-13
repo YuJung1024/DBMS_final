@@ -15,5 +15,7 @@
     <br><br>
     <button class="button3" onclick="window.location.href='manager_book.jsp'">登記值班時間</button>
     <button class="button4" onclick="window.location.href='manager_change.jsp'">修改值班時間</button>
+    <br><br>
+    <button class="button4" onclick="window.location.href='manager.jsp'">回主畫面</button>
 </body>
 </html>

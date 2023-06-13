@@ -57,6 +57,11 @@ height: 160px;
 }
 </style>
 <body>
+<% //get userid input(maybe)
+//String  id =  (String)request.getAttribute("input_id");
+//System.out.println(id);
+%>
+
     <h1>尚有空缺的值班時間</h1>
     
     <section class="container1">

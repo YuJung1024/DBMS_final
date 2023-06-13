@@ -145,7 +145,7 @@ background-image:url("pic/drinks_cartoon_n.jpg");
 	<button onclick="changepage2()">info</button>
 	<script>
 	function changepage2(){
-		window.location.href ="practice_mode.jsp"
+		window.location.href ="practice_mode_u.jsp"
 	}
 </script>
 	<!--  </a>-->
@@ -205,10 +205,10 @@ background-image:url("pic/drinks_cartoon_n.jpg");
 <!-- </a> -->
 
 <!-- <a href="Door.html"> -->
-	<button class="button button8" onclick="changepage()">Door</button>
+	<button class="button button8" onclick="changepaget()">Door</button>
 		<script>
-		function changepage(){
-			window.location.href ="user_page.jsp"
+		function changepaget(){
+			window.location.href ="userpage.jsp"
 		}
 	</script>
 	

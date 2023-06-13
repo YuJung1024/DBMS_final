@@ -20,7 +20,7 @@
 	</button>
 	<script>
 		function changepage(){
-			window.location.href ="change.jsp"
+			window.location.href ="change_u.jsp"
 		}
 	</script>
 	</div>

@@ -43,6 +43,7 @@ public class intergrate extends HttpServlet {
 	public Connection conn;
 	public Statement stat;
 	public String userid;
+	public ArrayList<String> re = new ArrayList<String>();
 //	public Connect connect= new Connect();
 	
 	   public void init() throws ServletException {
@@ -59,12 +60,13 @@ public class intergrate extends HttpServlet {
 	        		stat=conn.createStatement();
 	 	    	 
 	 	    	 String query;
-	 	    	 query ="SELECT * FROM user;";
+	 	    	 query ="SELECT user_id,grade FROM user;";
 	 	    	 boolean success;
 	 	    	 success  = stat.execute(query);
 	 	    	 if(success) {
 	 	    		 ResultSet result = stat.getResultSet();
-	 	    		 showResultSet(result);
+	 	    		 re=showResultSet(result);
+	 	    		 System.out.print(re);
 	 	    		 result.close();
 	 	    		 connection.close();
 	 	    	 }
@@ -83,55 +85,21 @@ public class intergrate extends HttpServlet {
 				e.printStackTrace();
 			} 
 	    }
-	   public String check(int uid) throws ServletException, SQLException {
+	   public String check(Integer uid) throws ServletException, SQLException {
 		   String place="a";
-		   if(conn!=null) {
-			   stat=conn.createStatement();
-			   String query1,query2;
-				query1 = "SELECT user_id FROM user;";
-				query2 = "SELECT grade FROM user;";
-				boolean success;
-				success =stat.execute(query1);
-				boolean exist;
-				String [][]re;
-				int index=0;
-				if(success) {
-					ResultSet result = stat.getResultSet();
-					ArrayList<String>c=showResultSet(result);
-					re = new String [c.size()][2];
-					int i =uid;
-					for(int j =0;j<c.size();j++) {
-						re[j][1]=c.get(j);
-					}
-					if(c.contains(Integer.toString(i))) {
-						exist = true;
-						index= c.indexOf(i);
-					}else {
-						exist=false;
-					}
-					result.close();
-				}
-				boolean success2;
-				success2 =stat.execute(query2);
-//				String p = "full-time";
-				boolean isfull;
-				if(exist=true) {
-					if(success2) {
-					ResultSet result = stat.getResultSet();
-					ArrayList<String>c=showResultSet(result);
-					if(c.get(index).equals("full-time")) {
-						isfull = true;
-						System.out.println("full-time");
-						place = "f";
-					}else {
-						isfull=false;
-						System.out.println("part-time");
-						place = "p";
-					}
-					result.close();
-					}
-				}
-		   } 
+		   Integer id_in=uid-1;
+		   String ui=id_in.toString();
+		   boolean exist = false;
+		   if(re.get(uid-1).equalsIgnoreCase(ui)) {
+			   exist = true;
+			   if(re.get(uid).equalsIgnoreCase("full-time")) {
+				   place="f";
+				   System.out.println("is manager");
+			   }else if(re.get(uid).equalsIgnoreCase("part-time")) {
+				   place ="p";
+				   System.out.println("is part-time");
+			   }
+		   }
 		return place;
 		   
 	   }
@@ -158,7 +126,7 @@ public class intergrate extends HttpServlet {
 		response.setContentType("text/html");
 		if(request.getParameter("userid")== null) {
 			userid = request.getParameter("uid");
-			request.setAttribute("id", userid);
+			request.setAttribute("input_id", userid);
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 			System.out.print(userid);
 			return;
@@ -167,6 +135,7 @@ public class intergrate extends HttpServlet {
 		}
 			int uid;
 			userid = request.getParameter("uid");
+			request.setAttribute("input_id", userid);
 			uid = Integer.parseInt(userid);
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 			System.out.println("userid1"+userid);
@@ -197,11 +166,13 @@ public class intergrate extends HttpServlet {
 		
 	}
 	
-	   private static ArrayList showResultSet(ResultSet result)throws SQLException {
+	   private static ArrayList<String> showResultSet(ResultSet result)throws SQLException {
 			// TODO Auto-generated method stub
 			ArrayList<String> cid =new ArrayList<String>();
+			String[][] c;
 			ResultSetMetaData metadata = result.getMetaData();
 			int columnCount = metadata.getColumnCount();
+			c = new String[columnCount][2];
 			for(int i = 1;i<=columnCount;i++) {
 				System.out.printf("%15s",metadata.getColumnLabel(i));
 			}

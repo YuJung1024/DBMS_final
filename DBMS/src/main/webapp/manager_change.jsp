@@ -46,6 +46,11 @@
 <link rel="stylesheet" href="manager_change.css">
 </head>
 <body>
+<% //get userid input(maybe)
+//String  id =  (String)request.getAttribute("input_id");
+//System.out.println(id);
+%>
+
 <h1>您已登記的值班時間</h1>
     <section>
     <input type="checkbox" id=dt1 value="1" onclick="push(1);">2023-07-01 08:00~12:00</input>

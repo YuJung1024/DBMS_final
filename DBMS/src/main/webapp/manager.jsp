@@ -12,7 +12,8 @@
 <body classes = "body" bgcolor="#d2ece0">
 
 	<div class = "container">
-		<h1 class = "heading">工讀生訓練平台<%=request.getParameter("userid")%></h1>
+		<h1 class = "heading">工讀生訓練平台</h1>
+		<!-- <%=request.getParameter("userid")%>-->
 	</div>
 
 		<div class="container-5 ">
@@ -63,7 +64,7 @@
 
 	<div class="container-5">
 		<button class="button-5" onclick="contact()">
-		<img src="pic/user.png" loading="lazy" width="72" srcset="user-p-500.png 500w,user.png 512w" size="72px" alt="" class="image-4"><strong>新增使用者</strong></button>
+		<img src="user.png" loading="lazy" width="72" srcset="user-p-500.png 500w,user.png 512w" size="72px" alt="" class="image-4"><strong>新增使用者</strong></button>
 		<script>
 			function contact(){
 				alert("尚待開發中~")

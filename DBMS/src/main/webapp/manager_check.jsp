@@ -40,6 +40,11 @@ height: 200px;
 }
 </style>
 <body>
+<% //get userid input(maybe)
+//String  id =  (String)request.getAttribute("input_id");
+//System.out.println(id);
+%>
+
     <h1>尚未定案的登記</h1>
     <table class="container1" name="table" id ="table">
     <tbody>
