@@ -1,0 +1,50 @@
+body{
+    width:1440px;
+    height:1024px;
+    background-color: #b5decb;
+}
+
+img{
+    width: 193px;
+height: 186px;
+}
+button{
+    width: 119px;
+    height: 36px;
+    border: 4px solid #d5f7e7;
+    background-color: #178060;
+    background-size: cover;
+    font-family: Arial;
+    font-size: 16px;
+    color: #d5f7e7;
+    text-decoration: none solid rgb(213, 247, 231);
+    text-align: center;
+    box-shadow: inset 1px 1px 2px rgba(1,18,8,0.5);
+}
+.button1{
+    top:287px ;
+    left: 25px;
+    opacity:100% ;
+}
+/* .button{
+    height:;
+    width: ;
+    opacity:100% ;
+} */
+.button2{
+    top:287px ;
+    left: 158px;
+    opacity:100% ;
+}
+
+.button3{
+    top:337px ;
+    left: 25px;
+    opacity:100% ;
+}
+
+.button4{
+    top:337px;
+    left: 158px;
+    opacity:100% ;
+}

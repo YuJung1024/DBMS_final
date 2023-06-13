@@ -45,11 +45,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Manager book</title>
-    <link rel="stylesheet" href="css/manager_book.css">
+    <link rel="stylesheet" href="manager_book.css">
 </head>
+<style>
+.container1{
+width:500px;
+height: 160px;
+    background-color: #d5f7e7;
+    padding-left:0.3cm;
+
+}
+</style>
 <body>
     <h1>尚有空缺的值班時間</h1>
-    <section>
+    
+    <section class="container1">
     <input type="checkbox" name=dt1 value="1">2023-07-01 08:00~12:00</input>
     <input type="checkbox" name=dt3 value="3">2023-07-01 16:00~20:00</input>
     <br><br>
@@ -57,9 +67,11 @@
     <input type="checkbox" name=dt4 value="4">2023-07-01 20:00~24:00</input>
     <br><br>
 </section>
-
-
+<br>
+&nbsp;
 <button class = "book" onclick="excuet();">登記所選時間</button>
+&nbsp;
+<button class = "book" onclick="window.location.href='manger_page.jsp'">回前頁</button>
 </body>
 <script>
 	function execute(){

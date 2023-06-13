@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="manager_page.css">
 </head>
 <body>
-<img src="manager_page.png" alt="manager" width="100" height="100">
+<img src="pic/manager_page.png" alt="manager" width="100" height="100">
     <h1>排班表</h1>
     <button class="button1" onclick="window.location.href='manager_build.jsp'">建立班表</button>
     <button class="button2" onclick="window.location.href='manager_check.jsp'">定案排班時間</button>

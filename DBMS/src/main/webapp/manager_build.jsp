@@ -65,12 +65,37 @@
 <title>Manager Book</title>
 <link rel="stylesheet" href="manager_build.css">
 </head>
+<style>
+.container1{
+width:831px;
+height: 200px;
+    background-color: #d5f7e7;
+    padding-left:0.3cm;
+
+}
+.container2{
+width:831px;
+height: 300px;
+    background-color: #d5f7e7;
+    padding-left:0.3cm;
+
+}
+</style>
+
 <body>
 <h1>開始新增排班時間</h1>  
 <br>
-<section class="container1" style="background-color: #d5f7e7"><h2>單一新增</h2>
+<div class="container1" style="background-color: #d5f7e7">
+<table id="table1" name="table1">
+<tbody>
+<tr>
+<td>
+<h2>單一新增</h2>
+</td></tr>
+<tr>
+<td>
 <form action="manager_build.jsp" method="post">
-<label for="Date">日期</label>
+<label for="Date">&nbsp;&nbsp;日&nbsp;&nbsp;期 &nbsp;&nbsp;&thinsp; </label>
 <select name = "Date" id=" date"> 
     <option value="2023/7/1">7/1</option>
     <option value="2023/7/2">7/2</option>
@@ -83,7 +108,8 @@
     <option value="2023/7/9">7/9</option>
     <option value="2023/7/10">7/10</option>
 </select>
-
+</td>
+<td>
 <label for="startTime">開始時間</label>
 <select name= "startTime" id ="startTime">
     <option value="9:00">9:00</option>
@@ -97,7 +123,8 @@
     <option value="17:00">17:00</option>
     <option value="18:00">18:00</option>
 </select>
-
+</td>
+<td>
 <label for="endTime">結束時間</label>
 <select name ="endTime" id=" endTime">
     <option value="10:00">10:00</option>
@@ -111,7 +138,10 @@
     <option value="18:00">18:00</option>
     <option value="19:00">19:00</option>
 </select>
-<br><br>
+</td>
+</tr>
+<tr>
+<td>
 <label for="Femployee">正職人數</label>
 <select name="Femployee" id="Femployee">
     <option value="0">0</option>
@@ -120,7 +150,8 @@
     <option value="3">3</option>
     <option value="4">4</option>
 </select>
-
+</td>
+<td>
 <label for="Pemployee">工讀人數</label>
 <select name="Pemployee" id="Pemployee">
     <option value="0">0</option>
@@ -129,7 +160,10 @@
     <option value="3">3</option>
     <option value="4">4</option>
 </select>
-<br><br>
+</td>
+</tr>
+<tr>
+<td>
 <label for="deadline"> 填寫時限 </label>
 <select name="deadline" id="deadline">
     <option value="6/25_23:59">6/25 23:59</option>
@@ -137,19 +171,34 @@
     <option value="6/27_23:59">6/27 23:59</option>
     <option value="6/28_23:59">6/28 23:59</option>
 </select>
+</td>
+</tr>
 </form>
-</section>
+</tbody>
+</table>
+</div>
+<br>
+<br>
 
-<section class="container2" style="background-color: #d5f7e7">
+<div class="container2" style="background-color: #d5f7e7">
+<table name="table2" id="table2">
+<tbody>
+<tr>
+<td>
 <h2>大量新增</h2>
-    <label for= "shifts">班距</label>
+</td>
+</tr>
+<tr>
+<td>
+    <label for= "shifts">&nbsp;&nbsp;班&nbsp;&nbsp;距 &nbsp;&nbsp;&thinsp; </label>
     <select name="span" id="span">
         <option value="1">1 shift</option>
         <option value="2">2 shifts</option>
         <option value="3">3 shifts</option>
         <option value="4">4 shifts</option>
     </select>
-    <br><br>
+    </td></tr>
+    <tr><td>
     <label for="Date">開始日期</label>
     <select name = "Date" id=" date"> 
         <option value="2023/7/1">7/1</option>
@@ -163,8 +212,8 @@
         <option value="2023/7/9">7/9</option>
         <option value="2023/7/10">7/10</option>
     </select>
-
-   
+</td>
+   <td>
     <label for="startTime">開始時間</label>
     <select name= "startTime" id ="startTime">
         <option value="9:00">9:00</option>
@@ -177,7 +226,10 @@
         <option value="16:00">16:00</option>
         <option value="17:00">17:00</option>
         <option value="18:00">18:00</option>
-    </select><br><br>
+    </select>
+    </td></tr>
+    <tr>
+    <td>
      <label for="Date">結束日期</label>
     <select name = "Date" id=" date"> 
         <option value="2023/7/1">7/1</option>
@@ -191,6 +243,8 @@
         <option value="2023/7/9">7/9</option>
         <option value="2023/7/10">7/10</option>
     </select>
+    </td>
+    <td>
     <label for="endTime">結束時間</label>
     <select name ="endTime" id=" endTime">
         <option value="10:00">10:00</option>
@@ -204,7 +258,9 @@
         <option value="18:00">18:00</option>
         <option value="19:00">19:00</option>
     </select>
-    <br><br>
+    </td></tr>
+    <tr>
+    <td>
     <label for="Femployee">正職人數</label>
     <select name="Femployee" id="Femployee">
         <option value="0">0</option>
@@ -213,6 +269,8 @@
         <option value="3">3</option>
         <option value="4">4</option>
     </select>
+    </td>
+    <td>
     <label for="Pemployee">工讀人數</label>
     <select name="Pemployee" id="Pemployee">
         <option value="0">0</option>
@@ -221,7 +279,10 @@
         <option value="3">3</option>
         <option value="4">4</option>
     </select>
-    <br><br>
+    </td>
+    </tr>
+    <tr>
+    <td>
     <label for="deadline"> 填寫時限 </label>
 <select name="deadline" id="deadline">
     <option value="6/25_23:59">6/25 23:59</option>
@@ -229,17 +290,21 @@
     <option value="6/27_23:59">6/27 23:59</option>
     <option value="6/28_23:59">6/28 23:59</option>
 </select>
-<br><br>
+</td></tr>
+<tr><td>
 <label for="adding"> 一次新增
 <select name="adding" id="adding">
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
 </select> 個排班時間</label>
-</section>
+</td></tr>
+</tbody>
+</table>
+</div>
 
-<br><br><br><br>
-
+<br><br>
+&nbsp;
 <button class = "button_add" onclick="window.location.href='manager_success.jsp'">送出指令</button>
     <script>
 	function execute(){
@@ -281,6 +346,8 @@
 		window.location.href='manager_success.jsp';
 	} 
 </script>
+&nbsp;
+<button class = "button_add" onclick="window.location.href='manger_page.jsp'">回前頁</button>
 
 </body>
 </html>

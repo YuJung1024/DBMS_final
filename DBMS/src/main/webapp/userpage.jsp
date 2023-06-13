@@ -26,9 +26,15 @@
 	</div>
 
 	<div class="container-5">
-		<button class="button-5">
+		<button class="button-5" onclick="schedule()">
 		<img src="pic/schedule.png" loading ="lazy" width = "69" size ="(max-width:479px)100vw,68.99801635742188px" srcset="schedule-p-500.png 500w,  schedule.png 512w" alt="" class="image-2">
 		<strong>排班表</strong></button>
+		<script>
+		function schedule(){
+			window.location.href ="manger_page.jsp"
+		}
+
+	</script>
 	</div>
 
 	<div class="container-5">

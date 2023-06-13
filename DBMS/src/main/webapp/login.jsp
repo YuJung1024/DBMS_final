@@ -23,9 +23,9 @@
 <div class="container-1">
 	<h3>Welcome</h3>
 	
-	<form action="intergrate" method="get">
+	<!--  <form action="intergrate" method="get">-->
 	<label>使用者帳號:</label>
-	<input id="userid"  name ="uid" placeholder="Type " type="text">
+	<input id="userid"  name ="userid" placeholder="Type " type="text">
 	<br>
 	<!-- <label>使用者密碼:</label>-->
 	<!-- <input id="passwords" type="text" placeholder="Type">-->
@@ -34,7 +34,6 @@
 	
 
 	<script>
-		String value = "0"	
 		function getInputValue(){
 			var value1 = document.getElementById("userid").value;
 			/*let value2 =document.getElementById("passwords").value;*/

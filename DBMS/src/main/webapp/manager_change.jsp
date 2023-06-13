@@ -43,7 +43,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Manager Page</title>
-<link rel="stylesheet" href="css/manager_change.css">
+<link rel="stylesheet" href="manager_change.css">
 </head>
 <body>
 <h1>您已登記的值班時間</h1>
@@ -56,6 +56,7 @@
     </section>
     <br><br>
     <button class = "button_change" onclick="execute();">確認修改</button>
+    <button class = "button_change" onclick="window.location.href='manger_page.jsp'">回前頁</button>
     <p id="sqls"></p>
 <script>
 	function push(i){
