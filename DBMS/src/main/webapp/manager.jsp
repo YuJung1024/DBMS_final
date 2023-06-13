@@ -12,7 +12,7 @@
 <body classes = "body" bgcolor="#d2ece0">
 
 	<div class = "container">
-		<h1 class = "heading">工讀生訓練平台</h1>
+		<h1 class = "heading">工讀生訓練平台<%=request.getParameter("userid")%></h1>
 	</div>
 
 		<div class="container-5 ">

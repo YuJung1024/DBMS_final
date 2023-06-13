@@ -13,6 +13,7 @@
 <%@ page import="java.sql.ResultSetMetaData" %>
 
 
+
 <%! Connection conn = null; %>
 <%!ArrayList<String>c=new ArrayList<String>(); %>
 <% String connectionURL = "jdbc:mysql://my-database-1.ck5d9adueifx.ap-southeast-2.rds.amazonaws.com/part-time training system"; 
@@ -31,60 +32,60 @@
 			int index = 0;
 			if(success) {
 				ResultSet result = statement.getResultSet();
-			//	c=work.Connect.showResultSet(result);
+				//c=work.Connect.showResultSet(result);
 			}	
             statement.close();
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}
-%>    
+		
+%>
 <!DOCTYPE html>
-<html>
+<html >
 <head>
-<meta charset="UTF-8">
-<title>Manager Page</title>
-<link rel="stylesheet" href="css/manager_change.css">
+    <meta charset="UTF-8">
+    <title>Manager book</title>
+    <link rel="stylesheet" href="css/manager_book.css">
 </head>
 <body>
-<h1>您已登記的值班時間</h1>
+    <h1>尚有空缺的值班時間</h1>
     <section>
-    <input type="checkbox" id=dt1 value="1" onclick="push(1);">2023-07-01 08:00~12:00</input>
-    <input type="checkbox" id=dt3 value="3" onclick="push(2);">2023-07-01 16:00~20:00</input>
+    <input type="checkbox" name=dt1 value="1">2023-07-01 08:00~12:00</input>
+    <input type="checkbox" name=dt3 value="3">2023-07-01 16:00~20:00</input>
     <br><br>
-    <input type="checkbox" id=dt2 value="2" onclick="push(3);">2023-07-01 12:00~16:00</input>
-    <input type="checkbox" id=dt4 value="4" onclick="push(4);">2023-07-01 20:00~24:00</input>
-    </section>
+    <input type="checkbox" name=dt2 value="2">2023-07-01 12:00~16:00</input>
+    <input type="checkbox" name=dt4 value="4">2023-07-01 20:00~24:00</input>
     <br><br>
-    <button class = "button_change" onclick="execute();">確認修改</button>
-    <p id="sqls"></p>
+</section>
+
+
+<button class = "book" onclick="excuet();">登記所選時間</button>
+</body>
 <script>
-	function push(i){
-		var id="dt"+i;
-		if(!document.getElementById(id).checked){
-			var msg=document.createElement('p');
-			msg.setAttribute("name","sql"+i);
-			msg.setAttribute("value","DELETE FROM register WHERE registrant_id=? AND duty_time_id="+i);
-			document.getElementById("sqls").appendChild(msg);
-			
-		}else {
-			var msg=document.createElement('p');
-			msg.setAttribute("name","sql"+i);
-			msg.setAttribute("value","INSERT INTO register value(?,"+i+",FALSE,NULL)");
-			document.getElementById("sqls").appendChild(msg);
-			
-		}
-	}
 	function execute(){
 		<%
+		// Retrieving form values
+		String[] dts=new String[4];
+		for(int i=1;i<=4;i++){
+			String dti="dt"+i;
+			if(request.getParameter(dti)!=null){
+				dts[i-1] = request.getParameter(dti);
+			}else{
+				dts[i-1] = null;
+			}
+		}
+		
+			
+		// Inserting form values into the database
 		try {
 			for(int i=0;i<4;i++){
 				String uid=request.getParameter("uid");
-				String name="sql"+i;
-				String query=request.getParameter(name);
-				if(query!=null){
-		            PreparedStatement statement = conn.prepareStatement(query);
+				if(dts[i]!=null){
+					String sql = "INSERT INTO register VALUES(?,?,FALSE,NULL)";
+		            PreparedStatement statement = conn.prepareStatement(sql);
 		            statement.setString(1, uid);
-		       		            
+		            statement.setString(2, dts[i]);
+		            
 		            statement.executeUpdate();
 		            statement.close();
 				}
@@ -96,8 +97,6 @@
 		%>
 		window.location.href ="manager_success.jsp";
 	}
-	
 
 </script>
-</body>
-</html>
+    </html>

@@ -66,6 +66,7 @@ public class intergrate extends HttpServlet {
 	 	    		 ResultSet result = stat.getResultSet();
 	 	    		 showResultSet(result);
 	 	    		 result.close();
+	 	    		 connection.close();
 	 	    	 }
 	 	      }
 	        } catch (SQLException e) {

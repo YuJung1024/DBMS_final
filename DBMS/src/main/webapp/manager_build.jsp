@@ -8,9 +8,8 @@
 <%@ page import="javax.servlet.http.*" %>
 <%@ page import="java.util.ArrayList" %>
 
+<%! Connection conn = null; %>
 <%
-	
-
     // Database connection details
 	String connectionURL = "jdbc:mysql://my-database-1.ck5d9adueifx.ap-southeast-2.rds.amazonaws.com/part-time training system"; 
     String username = "admin";
@@ -26,44 +25,45 @@
     }
 
     // Retrieving form values
-    String date = request.getParameter("Date");
-    String startTime = request.getParameter("startTime");
-    String endTime = request.getParameter("endTime");
-    String fEmployee = request.getParameter("Femployee");
-    String pEmployee = request.getParameter("Pemployee");
-    String deadline = request.getParameter("deadline");
+//    String date = request.getParameter("Date");
+//    String startTime = request.getParameter("startTime");
+//    String endTime = request.getParameter("endTime");
+//    String fEmployee = request.getParameter("Femployee");
+//    String pEmployee = request.getParameter("Pemployee");
+//    String deadline = request.getParameter("deadline");
  // Validate and parse input values
-    int fEmployeeCount = 0;
-    int pEmployeeCount = 0;
+//    int fEmployeeCount = 0;
+//   int pEmployeeCount = 0;
 
-    if (fEmployee != null && !fEmployee.isEmpty()) {
-        fEmployeeCount = Integer.parseInt(fEmployee);
-    }
+//    if (fEmployee != null && !fEmployee.isEmpty()) {
+//        fEmployeeCount = Integer.parseInt(fEmployee);
+//    }
 
-    if (pEmployee != null && !pEmployee.isEmpty()) {
-        pEmployeeCount = Integer.parseInt(pEmployee);
-    }
+//    if (pEmployee != null && !pEmployee.isEmpty()) {
+//        pEmployeeCount = Integer.parseInt(pEmployee);
+//    }
     // Inserting form values into the database
-    try {
-    	String sql = "INSERT INTO duty_time (duty_date, start_time,end_time,full_time_job_employees_num,part_time_job_employees_num,fill_in_time_limit) VALUES (?, ?, ?, ?, ?, ?)";
-        PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, date);
-        statement.setString(2, startTime);
-        statement.setString(3, endTime);
-        statement.setString(4, fEmployee);
-        statement.setString(5, pEmployee);
-        statement.setString(6, deadline);
-        statement.executeUpdate();
-        statement.close();
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
+//    try {
+//    	String sql = "INSERT INTO duty_time (duty_date, start_time,end_time,full_time_job_employees_num,part_time_job_employees_num,fill_in_time_limit) VALUES (?, ?, ?, ?, ?, ?)";
+//        PreparedStatement statement = conn.prepareStatement(sql);
+//        statement.setString(1, date);
+//        statement.setString(2, startTime);
+//        statement.setString(3, endTime);
+//        statement.setString(4, fEmployee);
+//       statement.setString(5, pEmployee);
+//        statement.setString(6, deadline);
+//       statement.executeUpdate();
+//        statement.close();
+//    } catch (SQLException e) {
+//        e.printStackTrace();
+//    }
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="BIG5">
-<title>Manager Book</title>\    <link rel="stylesheet" href="manager_build.css">
+<title>Manager Book</title>
+<link rel="stylesheet" href="manager_build.css">
 </head>
 <body>
 <h1>開始新增排班時間</h1>  
@@ -241,7 +241,46 @@
 <br><br><br><br>
 
 <button class = "button_add" onclick="window.location.href='manager_success.jsp'">送出指令</button>
-    
+    <script>
+	function execute(){
+		<%
+			// Retrieving form values
+			String date = request.getParameter("Date");
+			String startTime = request.getParameter("startTime");
+			String endTime = request.getParameter("endTime");
+			String fEmployee = request.getParameter("Femployee");
+			String pEmployee = request.getParameter("Pemployee");
+			String deadline = request.getParameter("deadline");
+			// Validate and parse input values
+			int fEmployeeCount = 0;
+			int pEmployeeCount = 0;
+			
+			if (fEmployee != null && !fEmployee.isEmpty()) {
+			    fEmployeeCount = Integer.parseInt(fEmployee);
+			}
+			
+			if (pEmployee != null && !pEmployee.isEmpty()) {
+			    pEmployeeCount = Integer.parseInt(pEmployee);
+			}
+			// Inserting form values into the database
+			try {
+				String sql = "INSERT INTO duty_time (duty_date, start_time,end_time,full_time_job_employees_num,part_time_job_employees_num,fill_in_time_limit) VALUES (?, ?, ?, ?, ?, ?)";
+			    PreparedStatement statement = conn.prepareStatement(sql);
+			    statement.setString(1, date);
+			    statement.setString(2, startTime);
+			    statement.setString(3, endTime);
+			    statement.setString(4, fEmployee);
+			    statement.setString(5, pEmployee);
+			    statement.setString(6, deadline);
+			    statement.executeUpdate();
+			    statement.close();
+			} catch (SQLException e) {
+			    e.printStackTrace();
+			}
+	%>
+		window.location.href='manager_success.jsp';
+	} 
+</script>
 
 </body>
 </html>
