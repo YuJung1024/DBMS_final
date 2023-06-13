@@ -7,6 +7,7 @@
 <%@ page import="javax.servlet.*" %>
 <%@ page import="javax.servlet.http.*" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="work.Connect"%>
 
 <%! Connection conn = null; %>
 <%
@@ -18,6 +19,7 @@
     // Establishing database connection
     Connection conn = null;
     try {
+    	
         Class.forName("com.mysql.jdbc.Driver");
         conn = DriverManager.getConnection(connectionURL, username, password);
     } catch (Exception e) {

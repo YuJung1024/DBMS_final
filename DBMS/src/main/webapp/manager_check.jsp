@@ -9,6 +9,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
+<%@ page import="work.Connect"%>
 
 <%! Connection conn = null; %>
 <%!ArrayList<String>c=new ArrayList<String>(); %>

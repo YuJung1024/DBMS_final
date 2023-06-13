@@ -13,7 +13,7 @@ import javax.servlet.ServletException;
 public class Connect {
 
 	public String userid;
-	public Connect(String input) {
+	public Connect() {
 		
 //		System.out.println(input);
 	}
@@ -154,7 +154,7 @@ public class Connect {
 //	   }
 //	
 	
-	private static ArrayList showResultSet(ResultSet result)throws SQLException {
+	public static ArrayList showResultSet(ResultSet result)throws SQLException {
 		// TODO Auto-generated method stub
 		ArrayList<String> cid =new ArrayList<String>();
 		ResultSetMetaData metadata = result.getMetaData();

@@ -11,35 +11,14 @@
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.ResultSetMetaData" %>
+<%@ page import="work.Connect"%>
 
-
+ 
 
 <%! Connection conn = null; %>
 <%!ArrayList<String>c=new ArrayList<String>(); %>
-<% String connectionURL = "jdbc:mysql://my-database-1.ck5d9adueifx.ap-southeast-2.rds.amazonaws.com/part-time training system"; 
-		String username = "admin";
-		String password = "LN6MVu8Jr38vmyylUBD0";
-		
-		// Establishing database connection
-		try {
-		    Class.forName("com.mysql.jdbc.Driver");
-		    conn = DriverManager.getConnection(connectionURL, username, password);
-		    String sql = "WITH finalizedRegister AS (SELECT duty_time_id, COUNT(*) As finalizedNum FROM register AS r, user As u WHERE u.user_id=r.registrant_id AND u.grade='full-time' AND verdict=true GROUP BY duty_time_id) SELECT DISTINCT d.duty_time_id, d.duty_date, d.start_time,d.end_time FROM duty_time As d LEFT JOIN finalizedRegister As f ON d.duty_time_id=f.duty_time_id WHERE d.full_time_job_employees_num > f.finalizedNum OR f.duty_time_id IS NULL";
-          
-		    PreparedStatement statement = conn.prepareStatement(sql);
-		    boolean success;
-			success =statement.execute(sql);
-			int index = 0;
-			if(success) {
-				ResultSet result = statement.getResultSet();
-				//c=work.Connect.showResultSet(result);
-			}	
-            statement.close();
-		} catch (Exception e) {
-		    e.printStackTrace();
-		}
-		
-%>
+
+
 <!DOCTYPE html>
 <html >
 <head>
@@ -58,8 +37,36 @@ height: 160px;
 </style>
 <body>
 <% //get userid input(maybe)
-//String  id =  (String)request.getAttribute("input_id");
-//System.out.println(id);
+String  id =  (String)request.getAttribute("input_id");
+System.out.println(id);
+%>
+<%  %>
+<% String connectionURL = "jdbc:mysql://my-database-1.ck5d9adueifx.ap-southeast-2.rds.amazonaws.com/part-time training system"; 
+		String username = "admin";
+		String password = "LN6MVu8Jr38vmyylUBD0";
+		// Establishing database connection
+		try {
+		    Class.forName("com.mysql.jdbc.Driver");
+		    conn = DriverManager.getConnection(connectionURL, username, password);
+		    String sql = "WITH finalizedRegister AS (SELECT duty_time_id, COUNT(*) As finalizedNum FROM register AS r, user As u WHERE u.user_id=r.registrant_id AND u.grade='full-time' AND verdict=true GROUP BY duty_time_id) SELECT DISTINCT d.duty_time_id, d.duty_date, d.start_time,d.end_time FROM duty_time As d LEFT JOIN finalizedRegister As f ON d.duty_time_id=f.duty_time_id WHERE d.full_time_job_employees_num > f.finalizedNum OR f.duty_time_id IS NULL";
+          
+		    PreparedStatement statement = conn.prepareStatement(sql);
+		    boolean success;
+			success =statement.execute(sql);
+			int index = 0;
+			if(success) {
+				Connect con = new Connect();
+				ResultSet result = statement.getResultSet();
+				try{
+					con.showResultSet(result);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			}	
+            statement.close();
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
 %>
 
     <h1>尚有空缺的值班時間</h1>
@@ -77,6 +84,7 @@ height: 160px;
 <button class = "book" onclick="excuet();">登記所選時間</button>
 &nbsp;
 <button class = "book" onclick="window.location.href='manger_page.jsp'">回前頁</button>
+
 </body>
 <script>
 	function execute(){
@@ -116,4 +124,5 @@ height: 160px;
 	}
 
 </script>
+
     </html>

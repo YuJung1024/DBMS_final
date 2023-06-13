@@ -11,6 +11,7 @@
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.ResultSetMetaData" %>
+<%@ page import="work.Connect"%>
 
 
 <%! Connection conn = null; %>
@@ -30,8 +31,9 @@
 			success =statement.execute(sql);
 			int index = 0;
 			if(success) {
+				Connect con = new Connect();
 				ResultSet result = statement.getResultSet();
-			//	c=work.Connect.showResultSet(result);
+				con.showResultSet(result);
 			}	
             statement.close();
 		} catch (Exception e) {
