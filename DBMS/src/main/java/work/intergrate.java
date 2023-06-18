@@ -137,11 +137,13 @@ public class intergrate extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		System.out.print(re);
-		if(request.getParameter("uid")== null) {
-			userid = request.getParameter("uid");
-			request.setAttribute("input_id", userid);
-			request.getRequestDispatcher("login.jsp").forward(request, response);
-			System.out.print(userid);
+		if(request.getParameter("uid")==null  || request.getParameter("uid").trim().isEmpty()) {
+//			userid = request.getParameter("uid");
+//			request.setAttribute("input_id", userid);
+//			request.getRequestDispatcher("login.jsp").forward(request, response);
+			
+			response.reset();
+			response.sendRedirect("login.jsp");
 			return;
 			
 			
