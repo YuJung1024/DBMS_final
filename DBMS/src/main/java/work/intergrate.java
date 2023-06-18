@@ -89,7 +89,7 @@ public class intergrate extends HttpServlet {
 		   String place="a";
 		   String user=uid.toString();
 		   Integer id_in=2*uid-2;
-		   
+		   int leng=re.size();
 		   String ui=id_in.toString();
 		   Integer pla = 2*uid -1;
 		   boolean exist = false;
@@ -98,14 +98,20 @@ public class intergrate extends HttpServlet {
 		   if(re.get(id_in).equals(user)) {
 			   exist = true;
 			   System.out.println("user exist!\n");
-			   if(re.get(pla).equalsIgnoreCase("full-time")) {
-				   place="f";
-				   System.out.println("is manager");
-			   }else if(re.get(pla).equalsIgnoreCase("part-time")) {
-				   place ="p";
-				   System.out.println("is part-time");
-			   }
-		   }
+			   if(exist=true) {
+				   if(re.get(pla).equalsIgnoreCase("full-time")) {
+					   place="f";
+					   System.out.println("is manager");
+				   }else if(re.get(pla).equalsIgnoreCase("part-time")) {
+					   place ="p";
+					   System.out.println("is part-time");
+				   }
+			   }else {
+				   place = "n";
+			   } 
+		   }else {
+			   place = "n";
+		   } 
 		return place;
 		   
 	   }
@@ -146,30 +152,40 @@ public class intergrate extends HttpServlet {
 			uid = Integer.parseInt(userid);
 			//request.getRequestDispatcher("login.jsp").forward(request, response);
 			System.out.println("userid1"+userid);
-			try {
-				String status;
-				status=check(uid);
-				System.out.println("status:"+status);
-				if(status.equalsIgnoreCase("p")) {
-					response.reset();
-					response.sendRedirect("userpage.jsp");
-					
-					//request.getRequestDispatcher("userpage.jsp").forward(request, response);
-					return;
+			int leng=re.size()/2;
+			if(uid<=leng) {
+				try {
+					String status;
+					status=check(uid);
+					System.out.println("status:"+status);
+					if(status.equalsIgnoreCase("p")) {
+						response.reset();
+						response.sendRedirect("userpage.jsp");
+						
+						//request.getRequestDispatcher("userpage.jsp").forward(request, response);
+						return;
+						}
+					else if(status.equalsIgnoreCase("f"))  {
+						response.reset();
+						response.sendRedirect("manager.jsp");
+						
+						//request.getRequestDispatcher("manager.jsp").forward(request, response);
+						return ;
+					}else {
+						response.reset();
+						response.sendRedirect("login.jsp");
+						return;
 					}
-				else if(status.equalsIgnoreCase("f"))  {
-					response.reset();
-					response.sendRedirect("manager.jsp");
-					
-					//request.getRequestDispatcher("manager.jsp").forward(request, response);
-					return ;
-				}else {
-					return;
+				} catch (ServletException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-			} catch (ServletException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			}else {
+				response.reset();
+				response.sendRedirect("login.jsp");
+				return;
 			}
+			
 	}
 
 
