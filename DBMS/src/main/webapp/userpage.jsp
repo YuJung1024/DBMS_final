@@ -16,7 +16,7 @@
 
 		<div class="container-5 ">
 		<button class="button-5" onclick="changepage()">
-		<img src ="pic/shelf.png" loading ="lazy" width="76" alt = "" class="image-6"><strong>貨架模擬</strong>
+		<img src ="shelf.png" loading ="lazy" width="76" alt = "" class="image-6"><strong>貨架模擬</strong>
 	</button>
 	<script>
 		function changepage(){
@@ -27,7 +27,7 @@
 
 	<div class="container-5">
 		<button class="button-5" onclick="schedule()">
-		<img src="pic/schedule.png" loading ="lazy" width = "69" size ="(max-width:479px)100vw,68.99801635742188px" srcset="schedule-p-500.png 500w,  schedule.png 512w" alt="" class="image-2">
+		<img src="schedule.png" loading ="lazy" width = "69" size ="(max-width:479px)100vw,68.99801635742188px" srcset="schedule-p-500.png 500w,  schedule.png 512w" alt="" class="image-2">
 		<strong>排班表</strong></button>
 		<script>
 		function schedule(){
@@ -39,7 +39,7 @@
 
 	<div class="container-5">
 		<button class="button-5" onclick="practice()">
-		<img src="pic/books.png" loading="lazy" width ="76"  size ="(max-width:470px)100vw,75px" srcset="books-p-500.png 500w,books.png 512w" alt="" class="image-3">
+		<img src="books.png" loading="lazy" width ="76"  size ="(max-width:470px)100vw,75px" srcset="books-p-500.png 500w,books.png 512w" alt="" class="image-3">
 	<strong>題庫練習</strong></button>
 	<script>
 		function practice(){
@@ -51,7 +51,7 @@
 
 	<div class="container-5">
 		<button class="button-5" onclick="contact()">
-		<img src="pic/telephone.png"  loading="lazy" width="72" size="(max-width:470px)100vw,70px" srcset="telephone-p-500.png 500w,telephone.png 512w" alt="" class="image-4">
+		<img src="telephone.png"  loading="lazy" width="72" size="(max-width:470px)100vw,70px" srcset="telephone-p-500.png 500w,telephone.png 512w" alt="" class="image-4">
 		<strong>聯絡負責人</strong></button>
 		<script>
 			function contact(){
@@ -62,7 +62,7 @@
 
 	<div class="container-5">
 		<button class="button-5">
-		<img src="pic/gear.png" loading="lazy" width="84" height="75" srcset="gear-p-500.png 500w,gear.png 512w" size="(max-width:470px)100vw,70px" alt="" class="image-5"><strong>設定</strong></button>
+		<img src="gear.png" loading="lazy" width="84" height="75" srcset="gear-p-500.png 500w,gear.png 512w" size="(max-width:470px)100vw,70px" alt="" class="image-5"><strong>設定</strong></button>
 	</div>
 
 

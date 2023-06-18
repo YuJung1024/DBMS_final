@@ -87,15 +87,21 @@ public class intergrate extends HttpServlet {
 	    }
 	   public String check(Integer uid) throws ServletException, SQLException {
 		   String place="a";
-		   Integer id_in=uid-1;
+		   String user=uid.toString();
+		   Integer id_in=2*uid-2;
+		   
 		   String ui=id_in.toString();
+		   Integer pla = 2*uid -1;
 		   boolean exist = false;
-		   if(re.get(uid-1).equalsIgnoreCase(ui)) {
+		   System.out.print(re.get(id_in)+"!!!\n\n");
+		   System.out.println("Start to check!");
+		   if(re.get(id_in).equals(user)) {
 			   exist = true;
-			   if(re.get(uid).equalsIgnoreCase("full-time")) {
+			   System.out.println("user exist!\n");
+			   if(re.get(pla).equalsIgnoreCase("full-time")) {
 				   place="f";
 				   System.out.println("is manager");
-			   }else if(re.get(uid).equalsIgnoreCase("part-time")) {
+			   }else if(re.get(pla).equalsIgnoreCase("part-time")) {
 				   place ="p";
 				   System.out.println("is part-time");
 			   }
@@ -105,10 +111,10 @@ public class intergrate extends HttpServlet {
 	   }
 	
 
-	   public void getinput(String input) {
-		   userid=input;
-		   System.out.println(userid);
-	   }
+//	   public void getinput(String input) {
+//		   userid=input;
+//		   System.out.println(userid);
+//	   }
 	
     public intergrate() throws IOException,SQLException{
         super();
@@ -120,11 +126,12 @@ public class intergrate extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.print("get parameter");
+		System.out.print("get parameter\n");
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
-		if(request.getParameter("userid")== null) {
+		System.out.print(re);
+		if(request.getParameter("uid")== null) {
 			userid = request.getParameter("uid");
 			request.setAttribute("input_id", userid);
 			request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -137,18 +144,26 @@ public class intergrate extends HttpServlet {
 			userid = request.getParameter("uid");
 			request.setAttribute("input_id", userid);
 			uid = Integer.parseInt(userid);
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			//request.getRequestDispatcher("login.jsp").forward(request, response);
 			System.out.println("userid1"+userid);
 			try {
 				String status;
 				status=check(uid);
-				System.out.println("userid2"+userid);
+				System.out.println("status:"+status);
 				if(status.equalsIgnoreCase("p")) {
-					request.getRequestDispatcher("userpage.jsp").forward(request, response);
+					response.reset();
+					response.sendRedirect("userpage.jsp");
+					
+					//request.getRequestDispatcher("userpage.jsp").forward(request, response);
 					return;
 					}
 				else if(status.equalsIgnoreCase("f"))  {
-					request.getRequestDispatcher("manager.jsp").forward(request, response);
+					response.reset();
+					response.sendRedirect("manager.jsp");
+					
+					//request.getRequestDispatcher("manager.jsp").forward(request, response);
+					return ;
+				}else {
 					return;
 				}
 			} catch (ServletException | SQLException e) {
@@ -156,6 +171,7 @@ public class intergrate extends HttpServlet {
 				e.printStackTrace();
 			}
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

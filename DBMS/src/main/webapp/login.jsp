@@ -23,10 +23,9 @@
 <div class="container-1">
 	<h3>Welcome</h3>
 	
-	<!--  <form action="intergrate" method="get">-->
-	
+	 <form action="intergrate" method="get">
 	<label>使用者帳號:</label>
-	<input id="userid"  name ="userid" placeholder="Type " type="text">
+	<input id="uid"  name ="uid" placeholder="Type " type="text">
 	<br>
 	<!-- <label>使用者密碼:</label>-->
 	<!-- <input id="passwords" type="text" placeholder="Type">-->
@@ -40,6 +39,8 @@
 			/*let value2 =document.getElementById("passwords").value;*/
 			document.getElementById("login").addEventListener("click",redirectFunction());
 			value = value1;
+			request.setAttribute("input_id",uid);
+			System.out.println("userid input= "+uid);
 			function redirectFunction(){
 				
 				if(value1>0 && value1<15){
