@@ -20,7 +20,7 @@
 
 
 <!DOCTYPE html>
-<html >
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Manager book</title>
@@ -35,12 +35,13 @@ height: 160px;
 
 }
 </style>
+
 <body>
-<% //get userid input(maybe)
-String  id =  (String)request.getAttribute("input_id");
-System.out.println(id);
+<% //get userid input
+ServletContext context1 = getServletContext();
+String uid1 = (String) context1.getAttribute("inputid");
+System.out.println("manager_page1!"+uid1);
 %>
-<%  %>
 <% String connectionURL = "jdbc:mysql://my-database-1.ck5d9adueifx.ap-southeast-2.rds.amazonaws.com/part-time training system"; 
 		String username = "admin";
 		String password = "LN6MVu8Jr38vmyylUBD0";
@@ -72,13 +73,23 @@ System.out.println(id);
     <h1>尚有空缺的值班時間</h1>
     
     <section class="container1">
+    <%for(int i=1;i<c.size();i+=4){
+    	%><input type="checkbox" name=dt<%=i%>value=<%=i %>><%=c.get(i)%> <%=c.get(i+1)%>~<%=c.get(i+2)%>
+    	<%if((i-1)%8!=0){
+    		%><br><%
+    		} 
+     } %>
+   
+    <br><br>
+</section>
+    <!--  <section class="container1">
     <input type="checkbox" name=dt1 value="1">2023-07-01 08:00~12:00</input>
     <input type="checkbox" name=dt3 value="3">2023-07-01 16:00~20:00</input>
     <br><br>
     <input type="checkbox" name=dt2 value="2">2023-07-01 12:00~16:00</input>
     <input type="checkbox" name=dt4 value="4">2023-07-01 20:00~24:00</input>
     <br><br>
-</section>
+</section>-->
 <br>
 &nbsp;
 <button class = "book" onclick="excuet();">登記所選時間</button>
@@ -103,8 +114,12 @@ System.out.println(id);
 			
 		// Inserting form values into the database
 		try {
+			ServletContext context = getServletContext();
+			String uid = (String) context.getAttribute("inputid");
+			//String uid=request.getParameter("inputid");
+			System.out.println("manager_page!"+uid);
 			for(int i=0;i<4;i++){
-				String uid=request.getParameter("uid");
+				
 				if(dts[i]!=null){
 					String sql = "INSERT INTO register VALUES(?,?,FALSE,NULL)";
 		            PreparedStatement statement = conn.prepareStatement(sql);

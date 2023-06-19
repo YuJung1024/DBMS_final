@@ -14,12 +14,14 @@ import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -117,11 +119,6 @@ public class intergrate extends HttpServlet {
 	   }
 	
 
-//	   public void getinput(String input) {
-//		   userid=input;
-//		   System.out.println(userid);
-//	   }
-	
     public intergrate() throws IOException,SQLException{
         super();
         // TODO Auto-generated constructor stub
@@ -130,7 +127,7 @@ public class intergrate extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.print("get parameter\n");
 		response.setCharacterEncoding("UTF-8");
@@ -148,10 +145,14 @@ public class intergrate extends HttpServlet {
 			
 			
 		}
-			int uid;
+			//int uid;
 			userid = request.getParameter("uid");
-			request.setAttribute("input_id", userid);
+			
 			uid = Integer.parseInt(userid);
+			
+			ServletContext context = getServletContext();
+			context.setAttribute("inputid", userid);
+
 			//request.getRequestDispatcher("login.jsp").forward(request, response);
 			System.out.println("userid1"+userid);
 			int leng=re.size()/2;
@@ -161,19 +162,41 @@ public class intergrate extends HttpServlet {
 					status=check(uid);
 					System.out.println("status:"+status);
 					if(status.equalsIgnoreCase("p")) {
+						HttpSession session1 = request.getSession();
+						String value1 ="員工編號"+uid+"你好!" ;
+						session1.setAttribute("myValue1", value1);
+//						boolean showAlert1 = true;
+//						request.setAttribute("showAlert1", showAlert1);
+//						String alertMessage1 = "員工編號"+uid+"你好!";
+//						request.setAttribute("alertMessage1", alertMessage1);
+						
 						response.reset();
 						response.sendRedirect("userpage.jsp");
 						
-						//request.getRequestDispatcher("userpage.jsp").forward(request, response);
+						//request.getRequestDispatcher("manager_page.jsp").forward(request, response);
 						return;
 						}
 					else if(status.equalsIgnoreCase("f"))  {
+						HttpSession session = request.getSession();
+						String value ="員工編號"+uid+"你好!" ;
+						session.setAttribute("myValue", value);
+//						boolean showAlert2 = true;
+//						request.setAttribute("showAlert2", showAlert2);
+//						String alertMessage2 = "員工編號"+uid+"你好!";
+//						request.setAttribute("alertMessage2", alertMessage2);
+						
 						response.reset();
 						response.sendRedirect("manager.jsp");
 						
-						//request.getRequestDispatcher("manager.jsp").forward(request, response);
+						//request.getRequestDispatcher("manager_page.jsp").forward(request, response);
 						return ;
 					}else {
+//						boolean showAlert=true;
+//						HttpSession session2 = request.getSession();
+//						HttpSession session3 = request.getSession();
+//						String value2 ="請輸入正確的員工編號!" ;
+//						session3.setAttribute("showAlert", showAlert);
+//						session2.setAttribute("myValue2", value2);
 						response.reset();
 						response.sendRedirect("login.jsp");
 						return;
@@ -183,6 +206,11 @@ public class intergrate extends HttpServlet {
 					e.printStackTrace();
 				}
 			}else {
+//				boolean showAlert=true;
+//				HttpSession session2 = request.getSession();
+//				String value2 ="請輸入正確的員工編號!" ;
+//				session2.setAttribute("showAlert", showAlert);
+//				session2.setAttribute("myValue2", value2);
 				response.reset();
 				response.sendRedirect("login.jsp");
 				return;
@@ -194,7 +222,7 @@ public class intergrate extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		

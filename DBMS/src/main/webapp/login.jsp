@@ -8,6 +8,7 @@
 <%@ page import="javax.servlet.http.*" %>
 <%@ page import="work.intergrate"%>
 <%@ page import="work.Connect"%>
+<%@page import="javax.servlet.http.HttpSession" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,8 @@
 <link rel="stylesheet" href ="login.css">
 </head>
 <body classes = "body" bgcolor="#d2ece0">
+
+    
 
 	<div class="container">
 	<h1>工讀生培訓APP</h1>
@@ -36,10 +39,11 @@
 	<script>
 		function getInputValue(){
 			var value1 = document.getElementById("userid").value;
+			
 			/*let value2 =document.getElementById("passwords").value;*/
 			document.getElementById("login").addEventListener("click",redirectFunction());
 			value = value1;
-			request.setAttribute("input_id",uid);
+			request.setAttribute("inputid",value1);
 			System.out.println("userid input= "+uid);
 			function redirectFunction(){
 				

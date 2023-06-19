@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@page import="java.io.IOException"%>
 <%@page import="work.*"%>
+<%@ page import="javax.servlet.*" %>
+<%@ page import="javax.servlet.http.*" %>
+<%@page import="javax.servlet.http.HttpSession" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +12,12 @@
 <title>工讀生培訓平台</title>
 <link rel="stylesheet" href="home.css">
 </head>
+<%
+String value = (String) session.getAttribute("myValue1");
+%>
+  <script>
+            alert("<%= value %>");
+        </script>
 <body classes = "body" bgcolor="#d2ece0">
 	<div class = "container">
 		<h1 class = "heading">工讀生訓練平台</h1>
