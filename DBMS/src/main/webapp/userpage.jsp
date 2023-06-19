@@ -40,7 +40,7 @@ String value = (String) session.getAttribute("myValue1");
 		<strong>排班表</strong></button>
 		<script>
 		function schedule(){
-			window.location.href ="manger_page.jsp"
+			window.location.href ="user_schedule_page.jsp"
 		}
 
 	</script>

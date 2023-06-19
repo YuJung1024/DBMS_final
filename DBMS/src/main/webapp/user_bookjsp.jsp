@@ -23,7 +23,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Manager book</title>
+    <title>User book</title>
     <link rel="stylesheet" href="manager_book.css">
 </head>
 <style>
@@ -40,7 +40,7 @@ height: 160px;
 <% //get userid input
 ServletContext context1 = getServletContext();
 String uid1 = (String) context1.getAttribute("inputid");
-System.out.println("manager_page1!"+uid1);
+System.out.println("user_page1!"+uid1);
 %>
 <% String connectionURL = "jdbc:mysql://my-database-1.ck5d9adueifx.ap-southeast-2.rds.amazonaws.com/part-time training system"; 
 		String username = "admin";
@@ -49,7 +49,7 @@ System.out.println("manager_page1!"+uid1);
 		try {
 		    Class.forName("com.mysql.jdbc.Driver");
 		    conn = DriverManager.getConnection(connectionURL, username, password);
-		    String sql = "WITH finalizedRegister AS (SELECT duty_time_id, COUNT(*) As finalizedNum FROM register AS r, user As u WHERE u.user_id=r.registrant_id AND u.grade='full-time' AND verdict=true GROUP BY duty_time_id) SELECT DISTINCT d.duty_time_id, d.duty_date, d.start_time,d.end_time FROM duty_time As d LEFT JOIN finalizedRegister As f ON d.duty_time_id=f.duty_time_id WHERE d.part_time_job_employees_num > f.finalizedNum AND f.duty_time_id NOT IN (SELECT duty_time_id FROM register WHERE registrant_id=?) OR f.duty_time_id IS NULL";
+		    String sql = "WITH finalizedRegister AS (SELECT duty_time_id, COUNT(*) As finalizedNum FROM register AS r, user As u WHERE u.user_id=r.registrant_id AND u.grade='part-time' AND verdict=true GROUP BY duty_time_id) SELECT DISTINCT d.duty_time_id, d.duty_date, d.start_time,d.end_time FROM duty_time As d LEFT JOIN finalizedRegister As f ON d.duty_time_id=f.duty_time_id WHERE d.part_time_job_employees_num > f.finalizedNum AND f.duty_time_id NOT IN (SELECT duty_time_id FROM register WHERE registrant_id=?) OR f.duty_time_id IS NULL";
           
 		    PreparedStatement statement = conn.prepareStatement(sql);
 		    statement.setString(1, request.getParameter("uid"));
@@ -97,7 +97,7 @@ System.out.println("manager_page1!"+uid1);
 &nbsp;
 <button class = "book" onclick="excuet();">登記所選時間</button>
 &nbsp;
-<button class = "book" onclick="window.location.href='manger_page.jsp'">回前頁</button>
+<button class = "book" onclick="window.location.href='user_schedule_page.jsp'">回前頁</button>
 
 </body>
 <script>
@@ -132,7 +132,7 @@ System.out.println("manager_page1!"+uid1);
 			}
 		}
 		%>
-		window.location.href ="manager_success.jsp";
+		window.location.href ="user_success.jsp";
 	}
 
 </script>

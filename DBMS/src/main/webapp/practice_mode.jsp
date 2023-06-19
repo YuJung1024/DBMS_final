@@ -226,6 +226,7 @@ img{
 <!--  <table class="table2">-->
 <!-- 	<tbody>
 	<tr>-->
+	
 	<table class="table2">
 	<tbody>
 	<tr>
@@ -250,10 +251,10 @@ img{
 <table class="table1">
 <tbody>	
 <tr>
-	<%!int j,i; %>
-	<%for(i=0;i<c.size();i+=4){
-		if(i/4+1!=1) j=i/4+1;
-    		%><td>
+<%!int j,i; %>
+<%for(i=0;i<c.size();i+=4){
+	if(i/4+1!=1) j=i/4+1;
+    	%><td>
     <button id="button<%=i/4+1%>" class="button button<%=i/4+1%>" onclick="showDialog<%=i/4+1%>()"></button>
     <dialog id ="this-dialog<%=i/4+1%>">
     <p></p>

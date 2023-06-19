@@ -1,5 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import="java.sql.*" %> 
+<%@ page import="java.io.*" %> 
+<%@page import="java.io.IOException"%>
+<%@page import="work.*"%>
+<%@page import="java.sql.SQLException"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="javax.servlet.*" %>
+<%@ page import="javax.servlet.http.*" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.ResultSetMetaData" %>
+<%@ page import="work.Connect"%>
+
+<%! Connection conn = null; %>
+<%!ArrayList<String>c=new ArrayList<String>(); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -178,7 +197,37 @@ img{
 <script src="dialog-polyfill.js"></script>
 </head>
 <body>
-<table class="table2">
+<% String connectionURL = "jdbc:mysql://my-database-1.ck5d9adueifx.ap-southeast-2.rds.amazonaws.com/part-time training system"; 
+		String username = "admin";
+		String password = "LN6MVu8Jr38vmyylUBD0";
+		// Establishing database connection
+		try {
+		    Class.forName("com.mysql.jdbc.Driver");
+		    conn = DriverManager.getConnection(connectionURL, username, password);
+		             
+		    PreparedStatement statement = conn.prepareStatement("SELECT co.commodity_name, co.common_name, c.shelf_id, c.position FROM place p, cabinet c, commodity co WHERE p.commodity_id=co.commodity_id AND p.cabinet_id=c.cabinet_id");
+		   
+		    boolean success;
+			success =statement.execute();
+			if(success) {
+				Connect con = new Connect();
+				ResultSet result = statement.getResultSet();
+				try{
+					c=con.showResultSet(result);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+			statement.close();
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+%>
+<!--  <table class="table2">-->
+<!-- 	<tbody>
+	<tr>-->
+	
+	<table class="table2">
 	<tbody>
 	<tr>
 	<td>
@@ -194,6 +243,66 @@ img{
     <script>
 		function changepage1(){
 			window.location.href ="test_mode_u.jsp"
+		}
+	</script>
+   </td></tr></tbody></table>
+   
+<section>
+<table class="table1">
+<tbody>	
+<tr>
+<%!int j,i; %>
+<%for(i=0;i<c.size();i+=4){
+	if(i/4+1!=1) j=i/4+1;
+    	%><td>
+    <button id="button<%=i/4+1%>" class="button button<%=i/4+1%>" onclick="showDialog<%=i/4+1%>()"></button>
+    <dialog id ="this-dialog<%=i/4+1%>">
+    <p></p>
+    <img src="img/<%=i/4+1%>.png">
+    <br>
+    Product info:<br>
+	名稱：<%=c.get(i) %><br>
+	別名：<%=c.get(i+1) %> <br>
+	位置：<%=c.get(i+2) %>號櫃第<%=c.get(i+3) %>格<br>
+    <br>
+    <button onclick="hidethisdialog<%=i/4+1%>()">close</button>
+    </dialog>
+    	<script>
+	    function showDialog<%=i/4+1%>(){
+	    	var dia = document.getElementById('this-dialog'+<%=i/4+1%>).showModal();
+	    }
+	
+	    function hidethisdialog<%=i/4+1%>(){
+	    	document.getElementById('this-dialog'+<%=i/4+1%>).close();
+	    	
+	    }
+    </script>
+    	<% 
+    } %>
+	</td>
+    <%
+    if((i/4+1)%5==0 ){
+    	%></tr><tr><%
+    } %>
+    </tr>
+	</tbody>
+	</table>
+	</section>
+	<br><br><br>
+	
+	<!-- <td>-->
+    <!--  <button class="home" style="width:150px;height:40px" onclick="changepage()">back</button>-->
+    <!--  <script>
+	//	function changepage(){
+	//		window.location.href ="decoration.jsp"
+	//	}
+	</script>-->
+	<!-- </td>-->
+	<!-- <td>
+     <button class="home" style="width:150px;height:40px" onclick="changepage1()">test_mode</button>
+    <script>
+		function changepage1(){
+			window.location.href ="test_mode.jsp"
 		}
 	</script>
    </td></tr></tbody></table>
@@ -521,7 +630,8 @@ img{
 	</tbody>
 	</table>
 	</section>
-	<br><br><br>
+	<br><br><br>-->
+	
 	
 
 </body>

@@ -117,7 +117,13 @@ background-image:url("pic/drinks_cartoon_n.jpg");
 
 </head>
 <body>
-	
+<%
+String value = "點擊door可回使用者頁面~";
+%>
+  <script>
+            alert("<%= value %>");
+        </script>
+        
 <!-- <a href="Fridges.html"> -->
 	<button class="button button1" onclick="showDialog()">Fridge</button>
 	<dialog id ="this-dialog">
