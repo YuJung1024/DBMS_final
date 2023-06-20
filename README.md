@@ -1,5 +1,7 @@
 # DBMS_final
 
+測試時，請執行intergrate.java，謝謝!
+
 
 使用版本:
 
