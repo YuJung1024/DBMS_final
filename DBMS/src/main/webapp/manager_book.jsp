@@ -54,7 +54,7 @@ System.out.println("manager_page1!"+uid1);
 		    PreparedStatement statement = conn.prepareStatement(sql);
 		    statement.setString(1, request.getParameter("uid"));
 		    boolean success;
-			success =statement.execute(sql);
+			success =statement.execute();
 			int index = 0;
 			if(success) {
 				Connect con = new Connect();

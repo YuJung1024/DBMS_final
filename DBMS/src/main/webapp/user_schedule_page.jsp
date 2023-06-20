@@ -75,7 +75,7 @@ System.out.println("manager_page1!"+uid1);
 		}
 %>
 
-<img src="pic/manager_page.png" alt="manager" width="100" height="100">
+<img src="pic/manager_page.png" alt="user" width="100" height="100">
     <h1>排班表</h1>
     <section class="container1">
     <h3>已被定案的值班時間:</h3>
@@ -91,7 +91,7 @@ System.out.println("manager_page1!"+uid1);
    <h3>預計薪資總計:<%=salary%></h3>
     <br>
 </section>
-    <button class="button3" onclick="window.location.href='user_bookjsp.jsp'">登記值班時間</button>
+    <button class="button3" onclick="window.location.href='user_book.jsp'">登記值班時間</button>
     <button class="button4" onclick="window.location.href='user_change.jsp'">修改值班時間</button>
     <br><br>
     <button class="button4" onclick="window.location.href='userpage.jsp'">回主畫面</button>
