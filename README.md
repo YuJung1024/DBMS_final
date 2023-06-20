@@ -43,5 +43,5 @@ password: LN6MVu8Jr38vmyylUBD0
 3. 資料夾中的mysql-connector-java-5.1.49資料夾需抽換為自己的
 
 
-4. 若系統找不到jdbc.mysql 這個class，可以用這個方法處
+4. 若系統找不到jdbc.mysql 這個class，可以試用這個方法處理:
 	[solution](https://stackoverflow.com/questions/17484764/java-lang-classnotfoundexception-com-mysql-jdbc-driver-in-eclipse)
